@@ -530,8 +530,8 @@ class TelegramMailer:
         confirm = input(f"\n{Fore.RED}Начать рассылку? (y/n): {Fore.WHITE}").lower()
         
         if confirm != 'y':
-print(f"{Fore.YELLOW}❌ Рассылка отменена")
-            return
+    print(f"{Fore.YELLOW}❌ Рассылка отменена")
+    return
         
         # Запуск рассылки в отдельном потоке
         self.data.mailing_active = True
