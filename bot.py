@@ -520,29 +520,29 @@ class TelegramMailer:
                 variant_count += 1
         
         # Подтверждение
-        print(f"\n{Fore.RED}=== ПОДТВЕРЖДЕНИЕ РАССЫЛКИ ===")
-        print(f"{Fore.YELLOW}Чатов: {len(target_chats)}")
-        print(f"{Fore.YELLOW}Задержка: {delay} сек")
-        print(f"{Fore.YELLOW}Пауза между циклами: {pause} сек")
-        print(f"{Fore.YELLOW}Циклов: {'∞' if cycles == 0 else cycles}")
-        print(f"{Fore.YELLOW}Рандомизация: {'Да' if variants else 'Нет'}")
-        
-        confirm = input(f"\n{Fore.RED}Начать рассылку? (y/n): {Fore.WHITE}").lower()
-        
-        if confirm != 'y':
+print(f"\n{Fore.RED}=== ПОДТВЕРЖДЕНИЕ РАССЫЛКИ ===")
+print(f"{Fore.YELLOW}Чатов: {len(target_chats)}")
+print(f"{Fore.YELLOW}Задержка: {delay} сек")
+print(f"{Fore.YELLOW}Пауза между циклами: {pause} сек")
+print(f"{Fore.YELLOW}Циклов: {'∞' if cycles == 0 else cycles}")
+print(f"{Fore.YELLOW}Рандомизация: {'Да' if variants else 'Нет'}")
+
+confirm = input(f"\n{Fore.RED}Начать рассылку? (y/n): {Fore.WHITE}").lower()
+
+if confirm != 'y':
     print(f"{Fore.YELLOW}❌ Рассылка отменена")
     return
-        
-        # Запуск рассылки в отдельном потоке
-        self.data.mailing_active = True
-        self.data.stop_mailing = False
-        self.data.current_stats = {
-            "started": time.time(),
-            "sent": 0,
-            "errors": 0,
-            "current_chat": None,
-            "cycle": 0,
-            "total_cycles": cycles
+
+# Запуск рассылки в отдельном потоке
+self.data.mailing_active = True
+self.data.stop_mailing = False
+self.data.current_stats = {
+    "started": time.time(),
+    "sent": 0,
+    "errors": 0,
+    "current_chat": None,
+    "cycle": 0,
+    "total_cycles": cycles
         }
         
         mailing_thread = threading.Thread(
